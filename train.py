@@ -1,4 +1,4 @@
-# import time
+import time
 
 import matplotlib.pyplot as plt
 
@@ -61,8 +61,10 @@ val_acc_log = []  # validation_accuracy_log
 for epoch in range(n_epochs):
     print(f'epoch {epoch+1}/{n_epochs}')
 
+    time_start = time.time()
     train_loss = models.train(model, dataloader_train, loss_fn, optimizer)
-    print(f'training loss: {train_loss}')
+    time_end = time.time()
+    print(f'training loss: {train_loss} ({time_end-time_start}s)')
     train_loss_log.append(train_loss)
 
     val_loss = models.test(model, dataloader_test, loss_fn)
