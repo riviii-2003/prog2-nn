@@ -41,8 +41,13 @@ dataloader_test = torch.utils.data.DataLoader(
     batch_size=batch_size
 )
 
+# GPU か CPU を自動的に選ぶ
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
 # モデルのインスタンス化を作成
 model = models.MyModel()
+# モデルを選んだデバイスに転送する
+model.to(device)
 
 # ロス関数
 loss_fn = torch.nn.CrossEntropyLoss()
